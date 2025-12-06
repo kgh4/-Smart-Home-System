@@ -1,5 +1,8 @@
-package src.core.interfaces;
+package core.interfaces;
 
-public class Controllable {
+public interface Controllable {
     
+    void turnOn();
+    void turnOff();
+    boolean isOn();
 }

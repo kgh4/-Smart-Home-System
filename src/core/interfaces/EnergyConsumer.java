@@ -1,5 +1,7 @@
-package src.core.interfaces;
+package core.interfaces;
+public interface EnergyConsumer {
+    double calculatePowerUsage();
+    
 
-public class EnergyConsumer {
     
 }

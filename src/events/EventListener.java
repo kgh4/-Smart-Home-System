@@ -1,5 +1,5 @@
-package src.events;
+package events;
 
-public class EventListener {
-    
+public interface EventListener {
+     void onEvent(Event event);
 }

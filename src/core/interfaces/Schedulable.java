@@ -1,5 +1,5 @@
-package src.core.interfaces;
+package core.interfaces;
 
-public class Schedulable {
-    
+public interface Schedulable {
+    void executeScheduledTask();
 }
