@@ -1,5 +1,7 @@
 package exceptions;
 
-public class DeviceNotFoundException {
-    
+public class DeviceNotFoundException extends Exception {
+    public DeviceNotFoundException(String message) {
+        super(message);
+    }
 }

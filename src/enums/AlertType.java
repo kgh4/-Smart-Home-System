@@ -1,4 +1,10 @@
 package enums;
-public class AlertType {
-    
+
+public enum AlertType {
+    FIRE,
+    SMOKE,
+    MOTION,
+    INTRUSION,
+    TEMPERATURE,
+    EMERGENCY
 }

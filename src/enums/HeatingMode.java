@@ -1,4 +1,8 @@
 package enums;
-public class HeatingMode {
-    
+
+public enum HeatingMode {
+    HEATING,
+    COOLING,
+    AUTO,
+    OFF
 }
