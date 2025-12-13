@@ -1,0 +1,146 @@
+# Person 5 Implementation Documentation (Rooya)
+
+## Overview
+Implemented the AutomationEngine and HomeController, added demo scenarios in Main, and integrated all components from Persons 1–4.
+
+## Completed Tasks ✓
+- Created `HomeController` to manage devices and automation rules.
+- Implemented `AutomationRule`, `Condition`, `Action` classes.
+- Integrated composite conditions for complex rules.
+- Set up demo scenarios in `app.Main`.
+- Verified event propagation and rule triggering.
+
+## Testing Results ✓
+- Hallway motion triggers lights correctly.
+- Kitchen smoke triggers TV off and bedroom lock.
+- Evening rule (10 PM + no motion) triggers devices as expected.
+- Home status prints total devices, active devices, and power usage.
+
+**Output:**  
+*[Home] Created smart home: MySmartHome
+[Room] Created Living Room (LIVING_ROOM)
+[Room] Created Hallway (HALLWAY)
+[Room] Created Bedroom (BEDROOM)
+[Room] Created Kitchen (KITCHEN)
+[Home] Added room 'Living Room' to MySmartHome
+[Home] Added room 'Hallway' to MySmartHome
+[Home] Added room 'Bedroom' to MySmartHome
+[Home] Added room 'Kitchen' to MySmartHome
+[Room] Added device 'Living Room Light' to Living Room
+[Room] Added device 'Living Room TV' to Living Room
+[Room] Added device 'Hallway Light' to Hallway
+[Room] Added device 'Hallway Motion' to Hallway
+[Room] Added device 'Bedroom Light' to Bedroom
+[Room] Added device 'Bedroom Lock' to Bedroom
+[Room] Added device 'Kitchen Light' to Kitchen
+[Room] Added device 'Kitchen Smoke Sensor' to Kitchen
+[AutomationEngine] Rule added: Hallway Motion Rule
+[AutomationEngine] Rule added: Kitchen Smoke Rule
+[AutomationEngine] Rule added: Evening Rule
+
+[Home] Broadcasting event: MOTION from Hallway Motion
+[Light] Living Room Light received event: MOTION from Hallway Motion
+[SmartTV] Living Room TV received event: MOTION from Hallway Motion
+[SmartTV] Motion alert received (no direct action configured).
+[Light] Hallway Light received event: MOTION from Hallway Motion
+[Light] Bedroom Light received event: MOTION from Hallway Motion
+[SmartLock] Bedroom Lock received event: MOTION from Hallway Motion
+[Light] Kitchen Light received event: MOTION from Hallway Motion
+[AutomationRule] Rule triggered: Hallway Motion Rule
+[SmartDevice] Hallway Light turned ON.
+
+[Home] Broadcasting event: FIRE from Kitchen Smoke Sensor
+[Light] Living Room Light received event: FIRE from Kitchen Smoke Sensor
+[SmartDevice] Living Room Light turned ON.
+[Light] Living Room Light brightness set to 100%.
+[Light] Emergency detected. Living Room Light set to MAX brightness for safety.
+[SmartTV] Living Room TV received event: FIRE from Kitchen Smoke Sensor
+[Light] Hallway Light received event: FIRE from Kitchen Smoke Sensor
+[SmartDevice] Hallway Light turned ON.
+[Light] Hallway Light brightness set to 100%.
+[Light] Emergency detected. Hallway Light set to MAX brightness for safety.
+[Light] Bedroom Light received event: FIRE from Kitchen Smoke Sensor
+[SmartDevice] Bedroom Light turned ON.
+[Light] Bedroom Light brightness set to 100%.
+[Light] Emergency detected. Bedroom Light set to MAX brightness for safety.
+[SmartLock] Bedroom Lock received event: FIRE from Kitchen Smoke Sensor
+[SmartLock] Emergency alert. Bedroom Lock locked for safety.
+[Light] Kitchen Light received event: FIRE from Kitchen Smoke Sensor
+[SmartDevice] Kitchen Light turned ON.
+[Light] Kitchen Light brightness set to 100%.
+[Light] Emergency detected. Kitchen Light set to MAX brightness for safety.
+[AutomationRule] Rule triggered: Kitchen Smoke Rule
+[SmartDevice] Living Room TV turned OFF.
+
+[Home] Broadcasting event: MOTION from Hallway Motion
+[Light] Living Room Light received event: MOTION from Hallway Motion
+[SmartTV] Living Room TV received event: MOTION from Hallway Motion
+[SmartTV] Motion alert received (no direct action configured).
+[Light] Hallway Light received event: MOTION from Hallway Motion
+[Light] Bedroom Light received event: MOTION from Hallway Motion
+[SmartLock] Bedroom Lock received event: MOTION from Hallway Motion
+[Light] Kitchen Light received event: MOTION from Hallway Motion
+[AutomationRule] Rule triggered: Evening Rule
+[SmartDevice] Living Room TV turned OFF.
+[SmartDevice] Living Room Light turned ON.
+
+╔════════════════════════════════════════╗
+║       MySmartHome STATUS
+╚════════════════════════════════════════╝
+Total Rooms: 4
+Total Devices: 8
+Active Devices: 4
+Total Power Usage: 40.00 W
+─────────────────────────────────────────
+
+========== Living Room Status ==========
+Room Type: LIVING_ROOM
+Total Devices: 2
+Active Devices: 1
+Total Power Usage: 10.00 W
+
+[Room] Devices in Living Room (LIVING_ROOM):
+  - Living Room Light [L1] - ON
+  - Living Room TV [TV1] - OFF
+=====================================
+
+
+========== Hallway Status ==========
+Room Type: HALLWAY
+Total Devices: 2
+Active Devices: 1
+Total Power Usage: 10.00 W
+
+[Room] Devices in Hallway (HALLWAY):
+  - Hallway Light [L2] - ON
+  - Hallway Motion [MS1] - OFF
+=====================================
+
+
+========== Bedroom Status ==========
+Room Type: BEDROOM
+Total Devices: 2
+Active Devices: 1
+Total Power Usage: 10.00 W
+
+[Room] Devices in Bedroom (BEDROOM):
+  - Bedroom Light [L3] - ON
+  - Bedroom Lock [LOCK1] - OFF
+=====================================
+
+
+========== Kitchen Status ==========
+Room Type: KITCHEN
+Total Devices: 2
+Active Devices: 1
+Total Power Usage: 10.00 W
+
+[Room] Devices in Kitchen (KITCHEN):
+  - Kitchen Light [L4] - ON
+  - Kitchen Smoke Sensor [SS1] - OFF
+=====================================
+*
+
+## Notes
+- This documentation shows Person 5’s contributions.
+- All automation rules and HomeController functionalities tested and confirmed.
