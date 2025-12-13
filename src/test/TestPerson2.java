@@ -1,13 +1,12 @@
-package main;
+package test;
 
-import devices.structure.Home;
+import structure.Home;
 import devices.sensors.MotionSensor;
 import devices.sensors.SmokeSensor;
-import enums.RoomType;
 import events.Event;
 import events.EventListener;
 
-// Example dummy device to react to events
+// Dummy device to react to events
 class DummyDevice implements EventListener {
     private String name;
 
@@ -22,7 +21,7 @@ class DummyDevice implements EventListener {
     }
 }
 
-public class Main {
+public class TestPerson2 {
     public static void main(String[] args) {
         // Create Home
         Home myHome = new Home("H001", "SmartHome");
@@ -37,12 +36,14 @@ public class Main {
         MotionSensor hallwaySensor = new MotionSensor("MS1", "Hallway Motion Sensor", 5, myHome);
         SmokeSensor kitchenSensor = new SmokeSensor("SS1", "Kitchen Smoke Sensor", 70, myHome);
 
-        // Register sensors as listeners (optional, if you want sensors to receive events)
+        // Register sensors as listeners
         myHome.registerEventListener(hallwaySensor);
         myHome.registerEventListener(kitchenSensor);
 
         System.out.println("\n=== Testing MotionSensor ===");
-        hallwaySensor.detectMotion(); // Should broadcast MOTION event
+
+        // FIX (Person 5): Removed getRoomType() from event message
+        hallwaySensor.detectMotion(); // Broadcast MOTION event
 
         // Wait 6 seconds to auto-clear motion
         try { Thread.sleep(6000); } catch (InterruptedException e) {}
@@ -50,6 +51,8 @@ public class Main {
         System.out.println("Motion detected after timeout? " + hallwaySensor.isMotionDetected());
 
         System.out.println("\n=== Testing SmokeSensor ===");
+
+        // FIX (Person 5): Removed getRoomType() from event message
         kitchenSensor.updateSmokeLevel(85); // Above threshold, should broadcast FIRE event
         System.out.println("Smoke detected? " + kitchenSensor.isSmokeDetected());
     }

@@ -4,8 +4,7 @@ import core.SmartDevice;
 import events.Event;
 import events.EventListener;
 import enums.AlertType;
-import exceptions.EmergencyAlertException;
-import devices.structure.Home;
+import structure.Home;
 
 public class SmokeSensor extends SmartDevice implements EventListener {
 
@@ -27,11 +26,14 @@ public class SmokeSensor extends SmartDevice implements EventListener {
         if (smokeLevel >= threshold && !smokeDetected) {
             smokeDetected = true;
 
-            Event alertEvent = new Event(
-                    AlertType.FIRE.name(),
-                    getDeviceName(),
-                    "Smoke level critical in " + getRoomType()
-            );
+         // FIX (Person 5): SmokeSensor does not know its Room.
+         // Room context is handled by Home / AutomationEngine.
+         Event alertEvent = new Event(
+                 AlertType.FIRE.name(),
+                 getDeviceName(),
+                 "Smoke level critical",
+                 null
+         );
 
             try {
                 home.emitEvent(alertEvent); // broadcast via Home

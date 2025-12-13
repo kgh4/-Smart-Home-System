@@ -4,7 +4,7 @@ import core.SmartDevice;
 import events.Event;
 import events.EventListener;
 import enums.AlertType;
-import devices.structure.Home;
+import structure.Home;
 
 public class MotionSensor extends SmartDevice implements EventListener {
 
@@ -25,11 +25,14 @@ public class MotionSensor extends SmartDevice implements EventListener {
         motionDetected = true;
         lastMotionTimestamp = System.currentTimeMillis();
 
-        Event motionEvent = new Event(
-                AlertType.MOTION.name(),
-                getDeviceName(),
-                "Motion detected in " + getRoomType()
-        );
+     // FIX (Person 5): MotionSensor does not know its Room.
+     // Room context is handled by Home / AutomationEngine, so we only emit the motion event.
+     Event motionEvent = new Event(
+             AlertType.MOTION.name(),
+             getDeviceName(),
+             "Motion detected",
+             null
+     );
 
         home.emitEvent(motionEvent); // broadcast to all listeners
     }
