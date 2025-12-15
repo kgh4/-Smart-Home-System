@@ -196,9 +196,7 @@ public class Home implements EventEmitter {
     
     // Print status of all rooms
     public void printHomeStatus() {
-        System.out.println("\n╔════════════════════════════════════════╗");
         System.out.println("║       " + homeName + " STATUS");
-        System.out.println("╚════════════════════════════════════════╝");
         System.out.println("Total Rooms: " + rooms.size());
         System.out.println("Total Devices: " + getTotalDeviceCount());
         System.out.println("Active Devices: " + getActiveDeviceCount());
