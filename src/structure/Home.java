@@ -1,6 +1,7 @@
 package structure;
 
 import core.SmartDevice;
+import java.time.LocalTime;
 import core.interfaces.EventEmitter;
 import enums.AlertType;
 import enums.RoomType;
@@ -16,6 +17,7 @@ public class Home implements EventEmitter {
     private String homeName;
     private List<Room> rooms;
     private List<EventListener> eventListeners;
+    private LocalTime currentTime;
     
     // Constructor
     public Home(String homeId, String homeName) {
@@ -140,7 +142,7 @@ public class Home implements EventEmitter {
         System.out.println("===========================\n");
         
         // Create and emit the alert event
-        Event alertEvent = new Event(alertType.name() + "_ALERT", source, message);
+        Event alertEvent = new Event(alertType.name() + "_ALERT", source, message, null);
         emitEvent(alertEvent);
         
         // For critical alerts, throw an exception
@@ -194,9 +196,7 @@ public class Home implements EventEmitter {
     
     // Print status of all rooms
     public void printHomeStatus() {
-        System.out.println("\n╔════════════════════════════════════════╗");
         System.out.println("║       " + homeName + " STATUS");
-        System.out.println("╚════════════════════════════════════════╝");
         System.out.println("Total Rooms: " + rooms.size());
         System.out.println("Total Devices: " + getTotalDeviceCount());
         System.out.println("Active Devices: " + getActiveDeviceCount());
@@ -243,5 +243,21 @@ public class Home implements EventEmitter {
     
     public List<EventListener> getEventListeners() {
         return new ArrayList<>(eventListeners); // Return a copy
+    }
+ // ---------- NEW METHOD ----------
+ //Returns the current time in the Home.
+ //This is used by time-based conditions in automation rules.
+    
+    public LocalTime getCurrentTime() {
+        return currentTime;
+    }
+
+    
+     //Updates the current time in the Home.
+     
+     //Can be called by HomeController or AutomationEngine to simulate time progression.
+     
+    public void setCurrentTime(LocalTime currentTime) {
+        this.currentTime = currentTime;
     }
 }

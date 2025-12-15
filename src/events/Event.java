@@ -6,24 +6,21 @@ public class Event {
     private String source;      
     private long timestamp;    
     private String extraData;   
+    private String message;
     
-    // First constructor for normal events (e.g., motion in hallway)
-    public Event(String type, String source) {
+    // fixed person 5 : merged both constructors in one 
+    public Event(String type, String source, String message, String extraData) {
         this.type = type;
         this.source = source;
-        this.extraData = "";
-        this.timestamp = System.currentTimeMillis();
-    }
-    
-    // Second constructor for events with extra data (e.g., smoke with severity)
-    public Event(String type, String source, String extraData) {
-        this.type = type;
-        this.source = source;
-        this.extraData = extraData;  
+        this.message = message != null ? message : "";
+        this.extraData = extraData != null ? extraData : "";
         this.timestamp = System.currentTimeMillis();
     }
     
     //getters
+    public String getMessage() {
+        return message;
+    }
     public String getSource() { 
         return source;  
     }
